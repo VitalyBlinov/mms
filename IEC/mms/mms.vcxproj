@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractStructure.h" />
+    <ClInclude Include="Address.h" />
     <ClInclude Include="ASN1Tag.h" />
     <ClInclude Include="BitStringEmitter.h" />
     <ClInclude Include="BitStringExtractor.h" />
@@ -90,11 +91,16 @@
     <ClInclude Include="ConcludePDU.h" />
     <ClInclude Include="ContextMisc.h" />
     <ClInclude Include="ContextTraits.h" />
+    <ClInclude Include="defaultFieldValue.h" />
     <ClInclude Include="EmitContext.h" />
     <ClInclude Include="EmitOctet.h" />
     <ClInclude Include="ErrorClass.h" />
     <ClInclude Include="evaluator.h" />
     <ClInclude Include="ExtractedSequenceOf.h" />
+    <ClInclude Include="GetNameListReq.h" />
+    <ClInclude Include="GetNameListResponse.h" />
+    <ClInclude Include="IdentifyRequest.h" />
+    <ClInclude Include="IdentifyResponse.h" />
     <ClInclude Include="InitiateErrorPDU.h" />
     <ClInclude Include="NULLValue.h" />
     <ClInclude Include="FetchContext.h" />
@@ -110,12 +116,19 @@
     <ClInclude Include="LengthEmitter.h" />
     <ClInclude Include="LengthExtractor.h" />
     <ClInclude Include="MMSTags.h" />
+    <ClInclude Include="ObjectClass.h" />
     <ClInclude Include="ObjectName.h" />
+    <ClInclude Include="ObjectScope.h" />
+    <ClInclude Include="OctetString.h" />
+    <ClInclude Include="OctetStringEmitter.h" />
+    <ClInclude Include="OctetStringExt.h" />
+    <ClInclude Include="OctetStringExtractor.h" />
     <ClInclude Include="ParametersSupportOpts.h" />
     <ClInclude Include="PDUCommons.h" />
     <ClInclude Include="RejectPDU.h" />
     <ClInclude Include="sequence.h" />
     <ClInclude Include="SequenceOfEmitter.h" />
+    <ClInclude Include="SequenceOfExtractor.h" />
     <ClInclude Include="serialization.h" />
     <ClInclude Include="ServiceError.h" />
     <ClInclude Include="ServiceSupportOpts.h" />
@@ -126,9 +139,11 @@
     <ClInclude Include="TagEmitter.h" />
     <ClInclude Include="TagExtractor.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TypeSpecification.h" />
     <ClInclude Include="UniversalClass.h" />
     <ClInclude Include="UnsignedEmitter.h" />
     <ClInclude Include="UnsignedExtractor.h" />
+    <ClInclude Include="VariableAccessSpecification.h" />
     <ClInclude Include="VarSizeBitString.h" />
     <ClInclude Include="VisibleString.h" />
     <ClInclude Include="VisibleStringEmitter.h" />

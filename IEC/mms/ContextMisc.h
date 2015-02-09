@@ -89,5 +89,14 @@ namespace MMS
                 N * sizeof(T)
                 );
         };
+
+        /************************************//**
+        * \brief Returns explicit context regardless of original context traits.
+        ****************************************/
+        template <typename C>
+        inline typename std::remove_reference<typename C>::type::tExplicit forceExplicit(C&& _ctx)
+        {
+            return std::remove_reference<typename C>::type::tExplicit(_ctx);
+        }
 }
 

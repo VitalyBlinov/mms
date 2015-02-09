@@ -8,34 +8,44 @@
 // <summary>IEC project</summary>
 //-----------------------------------------------------------------------------
 #pragma once
-
+#include <utility>
 namespace MMS
 {
-    namespace PDU
+    namespace DataTypes
     {
         /************************************//**
-         * \brief Generic sequence structure
-         *
-         * \details Basic structure for emitting and fetching
-         * of sequences of same type
-         *
-         * \todo To partially emit a sequence which may
-         *  be longer than can fit in one PDU, need to perform
-         *  two steps. First, evaluate the end() of the original
-         *  range that can fit in the context. Second, emit elements
-         *  in reverse order. 
-         *  Finding the limits of sequence's portion that can fit in
-         *  the PDU requires us to be able to calculate the number of
-         *  octets the value will take in the context without actually emitting
-         *  it, if possible. sometimes it is easier to emit it first and then
-         *  discard resulting context.
-         *  
-         *
-         ****************************************/
-        template <typename T>
-        struct sequence
+        * \brief Sequence OF X
+        *
+        * \details used to represent certain sequences when 
+        * emitting and extracting
+        *
+        ****************************************/
+        template <class It>
+        struct sequence: public std::pair<It, It>
         {
+            typedef typename std::pair<It, It> base;
+            /************************************//**
+            * \brief Constructor
+            ****************************************/
+            sequence(It _begin, It _end):
+                    base(_begin, _end)
+            {
 
+            }
+            /************************************//**
+            * \brief return begin of the sequence
+            ****************************************/
+            It begin() const
+            {
+                return first;
+            }
+            /************************************//**
+            * \brief returns end of the sequence
+            ****************************************/
+            It end() const
+            {
+                return second;
+            }
         };
     }
 }

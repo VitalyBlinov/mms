@@ -157,6 +157,15 @@ namespace MMS
             m_storage(_original)
             {
             };
+			/************************************//**
+			* \brief Constructor taking string on the buffer
+			****************************************/
+			VisibleString(
+				const VisibleString& _rhs
+				):
+				m_storage(_rhs.m_storage)
+			{
+			};
             /************************************//**
              * \brief Constructor taking string on the buffer
              ****************************************/
@@ -166,6 +175,15 @@ namespace MMS
             {
                 Details::assign(m_storage, _buf.getPtr(), _buf.getLength());
             };
+			/************************************//**
+			* \brief Constructor taking string on the buffer
+			****************************************/
+			VisibleString(
+				VisibleStringBuffer&& _buf
+				)
+			{
+				Details::assign(m_storage, _buf.getPtr(), _buf.getLength());
+			};
              /************************************//**
              * \brief Constructor taking literal and length
              ****************************************/
@@ -288,6 +306,7 @@ namespace MMS
         // Defines MMS tag for this type
         template <class T> struct TagDef<MMS::DataTypes::VisibleString<T>>{enum {TAG = MMS_TAGS::VISIBLE_STRING};};
         MMS_TAG_TYPE_DEF(MMS::DataTypes::VisibleStringBuffer, MMS_TAGS::VISIBLE_STRING);
+        MMS_TAG_TYPE_DEF(std::string, MMS_TAGS::VISIBLE_STRING);
     }
 }
 
@@ -298,5 +317,6 @@ namespace ASN1
         // Defines ASN.1 tag for this type
         template <class T> struct TagDef<MMS::DataTypes::VisibleString<T>>{enum {TAG = EN_UNIVERSAL_CLASS::VISIBLE_STR};};
         ASN_TAG_TYPE_DEF(MMS::DataTypes::VisibleStringBuffer, EN_UNIVERSAL_CLASS::VISIBLE_STR);
+        ASN_TAG_TYPE_DEF(std::string, EN_UNIVERSAL_CLASS::VISIBLE_STR);
     }
 }

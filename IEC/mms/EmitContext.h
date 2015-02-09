@@ -45,9 +45,22 @@ namespace MMS
                 /// the required size of target buffer.
                 /// \returns an indication of success. Normally,  true is returned. False is returned if 
                 /// target buffer is already full and octet is not emitted
-                bool emitOctet(
-                    unsigned char _octet                ///< Octet to be emitted
-                    );
+				inline bool emitOctet(
+					unsigned char _octet                ///< Octet to be emitted
+					)
+				{
+					if (m_length != 0)
+					{
+						--m_length;
+						m_begin[m_length] = _octet;
+						return true;
+					}
+					else
+					{
+						++m_missingOctets;
+						return false;
+					}
+				}
                 /************************************//**
                  * \brief Get number of missing octets
                  *
@@ -61,7 +74,10 @@ namespace MMS
                  *
                  * \returns Remaining context buffer size in bytes
                  ****************************************/
-                std::size_t GetContextSize() const;
+				inline std::size_t GetContextSize() const
+				{
+					return m_length;
+				}
                 /************************************//**
                  * \brief Emit octets optimization
                  *

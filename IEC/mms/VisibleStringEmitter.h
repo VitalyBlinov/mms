@@ -19,6 +19,36 @@ namespace MMS
 {
     namespace Emitters
     {
+        namespace Details
+        {
+            /************************************//**
+             * \brief Visible string emitter
+             *
+             * \details Emits visible string
+             * \tparam T - either VisibleString or std::string
+             *
+             ****************************************/
+            template <class Context, class T>
+            inline Context&& emitVisibleString(Context&& _ctx, const T& _Value)
+            {
+                auto oldContextSize = MMS::getContextSize(_ctx);
+                _ctx = emitOctets(_ctx, _Value.c_str(), _Value.length());
+                return std::move(emitTag(emitLength(_ctx, oldContextSize - MMS::getContextSize(_ctx)), _Value));
+            };
+            /************************************//**
+             * \brief Evaluator overload for visible string
+             *
+             * \details Optimized version of the evaluator. Does not
+             *  use context to perform to do test emits.
+             * \tparam T - either VisibleString or std::string
+             *
+             ****************************************/
+            template <typename Context, typename T>
+            inline std::size_t evaluateVisibleString(const Context& _ctx, const T& _Value)
+            {
+                return evaluateTag(_ctx, _Value) + evaluateLength(_ctx, _Value.length()) + _Value.length();
+            }
+        }
         /************************************//**
          * \brief Visible string emitter
          *
@@ -28,9 +58,7 @@ namespace MMS
         template <class Context, class T>
         inline Context&& emit(Context&& _ctx, const MMS::DataTypes::VisibleString<T>& _Value)
         {
-            auto oldContextSize = MMS::getContextSize(_ctx);
-            _ctx = emitOctets(_ctx, _Value.c_str(), _Value.length());
-            return std::move(emitTag(emitLength(_ctx, oldContextSize - MMS::getContextSize(_ctx)), _Value));
+            return Details::emitVisibleString(std::forward<Context>(_ctx), _Value);
         };
         /************************************//**
          * \brief Evaluator overload for visible string
@@ -42,7 +70,30 @@ namespace MMS
         template <typename Context, typename T>
         inline std::size_t evaluate(const Context& _ctx, const MMS::DataTypes::VisibleString<T>& _Value)
         {
-            return evaluateTag(_ctx, _Value) + evaluateLength(_ctx, _Value.length()) + _Value.length();
+            return Details::evaluateVisibleString(_ctx, _Value);
+        }
+        /************************************//**
+         * \brief std::string emitter
+         *
+         * \details Emits std::string as visible string
+         *
+         ****************************************/
+        template <class Context>
+        inline Context&& emit(Context&& _ctx, const std::string& _Value)
+        {
+            return Details::emitVisibleString(std::forward<Context>(_ctx), _Value);
+        };
+        /************************************//**
+         * \brief Evaluator overload for std::string
+         *
+         * \details Optimized version of the evaluator. Does not
+         *  use context to perform to do test emits.
+         *
+         ****************************************/
+        template <typename Context>
+        inline std::size_t evaluate(const Context& _ctx, const std::string& _Value)
+        {
+            return Details::evaluateVisibleString(_ctx, _Value);
         }
     }
 }

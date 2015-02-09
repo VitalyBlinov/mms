@@ -45,5 +45,8 @@
     <ClCompile Include="VarBitStringExtractorTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OctetStringFetchTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

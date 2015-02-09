@@ -29,22 +29,24 @@ namespace MMS
          * layer to stay away from any memory management issues.
          * \note Does not own any data, the data must
          * be copied to permanent storage if needed to retain
+         * \note Enforces explicit context traits
          *
          ****************************************/
         template <class C, class T>
         class SequenceOf
         {
         private:
-            C m_context;
+            typedef typename C::tExplicit contextType;
+            typename contextType m_context;
         public:
-
+            typedef std::false_type implicit;   ///< Needed to use resolve_implicit context trickery
             /************************************//**
              * \brief Iterator type for this container adapter
              ****************************************/
             class const_iterator
             {
             private:
-                C m_ctx;
+                contextType m_ctx;
                 T m_value;
             public:
                 typedef typename T value_type;
@@ -53,7 +55,7 @@ namespace MMS
                 typedef std::forward_iterator_tag iterator_category;
 
                 const_iterator(
-                    C _context
+                    contextType _context
                     ):
                     m_ctx(_context)
                 {
@@ -76,7 +78,7 @@ namespace MMS
 
                 const_iterator& operator++()
                 {
-                    C _copy(m_ctx);
+                    contextType _copy(m_ctx);
                     skipTLV(_copy);
                     *this = const_iterator(_copy);
                     return *this;
@@ -105,6 +107,13 @@ namespace MMS
             {
 
             };
+            /************************************//**
+             * \brief Default constructor
+             ****************************************/
+            SequenceOf()
+            {
+
+            };
 
             const_iterator begin() const
             {
@@ -113,7 +122,7 @@ namespace MMS
 
             const_iterator end() const
             {
-                C _copy(m_context);
+                contextType _copy(m_context);
                 fetchOctets(_copy, getContextSize(_copy));
                 return const_iterator(_copy);
             };

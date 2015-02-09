@@ -43,6 +43,8 @@ namespace MMS
 
 #define MMS_TAG_TYPE_DEF(type, tag) \
             template <> struct TagDef<type> {enum {TAG = tag};};
+#define MMS_T_TAG_TYPE_DEF(type, tag) \
+            struct TagDef<type> {enum {TAG = tag};};
 
         MMS_TAG_TYPE_DEF(char, MMS_TAGS::INTEGER);
         MMS_TAG_TYPE_DEF(short, MMS_TAGS::INTEGER);

@@ -13,7 +13,39 @@
 namespace MMS
 {
     namespace Extractors
-    {        
+    {
+        namespace Details
+        {
+            /************************************//**
+             * \brief Extracts long form of length
+             *
+             * \details used to extract lenght longer than 127
+             *
+             ****************************************/
+            template <class Context>
+            inline bool fetchLengthLong(
+                Context& _ctx,                      ///< Context
+                unsigned char octet,                ///< First octet of the length, already extracted
+                unsigned int& _length               ///< [OUT] Length value
+                )
+            {
+                auto count = octet & 0x7F;
+                auto octets = fetchOctets(_ctx, count);
+                if (octets != nullptr)
+                {
+                    _length = 0;
+                    for (auto idx = 0; idx != count; ++idx)
+                    {
+                        _length = (_length << 8) | octets[idx];
+                    }
+                    return  true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
         /************************************//**
          * \brief Length value fetcher
          *
@@ -39,19 +71,10 @@ namespace MMS
                     _length = octet;
                     return  true;
                 }
-                else                    // Long form
+                // Long form
+                else if (Details::fetchLengthLong(_ctx, octet, _length))
                 {
-                    auto count = octet & 0x7F;
-                    auto octets = fetchOctets(_ctx, count);
-                    if (octets != nullptr)
-                    {
-                        _length = 0;
-                        for (auto idx = 0; idx != count; ++idx)
-                        {
-                            _length = (_length << 8) | octets[idx];
-                        }
-                        return  true;
-                    }
+                    return true;
                 }
             }
             _ctx = backup;

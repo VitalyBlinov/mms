@@ -60,6 +60,22 @@ namespace MMS
                     return false;
                 }
             };
+
+            template <class Context>
+            inline bool extract(Context& _ctx, std::string& _Value)
+            {
+                MMS::DataTypes::VisibleStringBuffer _buf;
+                bool ret = extract(_ctx, _buf);
+                if (ret)
+                {
+                    std::swap(_Value, std::string(_buf.getPtr(), _buf.getPtr() + _buf.getLength()));
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            };
             ///@}
         }
     }

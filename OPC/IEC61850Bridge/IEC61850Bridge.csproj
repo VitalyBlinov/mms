@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3E0927C-740D-41E4-AE7D-18DC5FA26C06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IEC61850Bridge</RootNamespace>
+    <AssemblyName>IEC61850Bridge</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractNode.cs" />
+    <Compile Include="BDA.cs" />
+    <Compile Include="Btype.cs" />
+    <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="ConnectionParameters.cs" />
+    <Compile Include="DA.cs" />
+    <Compile Include="DAI.cs" />
+    <Compile Include="DataSet.cs" />
+    <Compile Include="DAType.cs" />
+    <Compile Include="DO.cs" />
+    <Compile Include="DOI.cs" />
+    <Compile Include="DOType.cs" />
+    <Compile Include="EnumType.cs" />
+    <Compile Include="EnumVal.cs" />
+    <Compile Include="FCDA.cs" />
+    <Compile Include="IConnection.cs" />
+    <Compile Include="IEDDescription.cs" />
+    <Compile Include="ITagsManagement.cs" />
+    <Compile Include="LDevice.cs" />
+    <Compile Include="LN.cs" />
+    <Compile Include="LN0.cs" />
+    <Compile Include="LNClass.cs" />
+    <Compile Include="LNodeType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportControlBlock.cs" />
+    <Compile Include="SCLFile.cs" />
+    <Compile Include="SDI.cs" />
+    <Compile Include="SDO.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

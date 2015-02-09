@@ -21,23 +21,6 @@ MMS::Extractors::Details::FetchContextBase::FetchContextBase( const void* _begin
 
 }
 
-MMS::Extractors::Details::FetchContextBase::FetchContextBase(const FetchContextBase& _rhs):
-    m_begin(_rhs.m_begin),
-    m_end(_rhs.m_end)
-{
-
-}
-
-unsigned char MMS::Extractors::Details::FetchContextBase::fetchOctetUnsafe()
-{
-    return *m_begin++;
-}
-
-std::size_t MMS::Extractors::Details::FetchContextBase::GetContextSize() const
-{
-    return m_end - m_begin;
-}
-
 bool FetchContextBase::operator==(const FetchContextBase& _rhs) const
 {
     return m_begin == _rhs.m_begin && m_end == _rhs.m_end;

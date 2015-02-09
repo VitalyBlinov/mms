@@ -14,6 +14,7 @@
 #include "FetchOctet.h"
 #include "LengthExtractor.h"
 #include "LengthEmitter.h"
+#include "defaultFieldValue.h"
 #ifndef MAX_STRUCTURE_FIELDS
 #define MAX_STRUCTURE_FIELDS    15
 #endif
@@ -119,9 +120,9 @@ namespace MMS
             }
 
             template <typename C, typename U>
-            inline C&& emitContextSpecificTag(C&& _ctx, int ID, U& _what)
+            inline C emitContextSpecificTag(C&& _ctx, int ID, U& _what)
             {
-                return std::move(MMS::Emitters::emitOctet(std::forward<C>(_ctx), (getTagModifier(_what) | ID)));
+                return MMS::Emitters::emitOctet(std::move(_ctx), (getTagModifier(_what) | ID));
             }
             /************************************//**
              * \brief Check context specific tag depending on 
@@ -252,7 +253,7 @@ namespace MMS
                 const T& _s
                 ) const
             {
-                if (!(_s.*ptr == U()))
+                if (!(_s.*ptr == Details::default_field_value<T, U, ID>::def()))
                 {
                     auto oldLength = MMS::getContextSize(_ctx);
                     _ctx = ::MMS::Emitters::emit(std::forward<C>(_ctx), _s.*ptr);
@@ -306,7 +307,7 @@ namespace MMS
                     }
                 }
 
-                _s.*ptr = U();
+                _s.*ptr = Details::default_field_value<T, U, ID>::def();
                 _ctx = old;
                 return true;
             }
@@ -330,7 +331,6 @@ namespace MMS
           
             static_assert(ID < MAX_STRUCTURE_FIELDS, "Max number of fields exceeded. Consider increasing the value of MAX_STRUCTURE_FIELDS");
         };
-
         /************************************//**
          * \brief PDU/payload field definition macro
          ****************************************/
@@ -393,11 +393,11 @@ namespace MMS
              * \brief Emit function selected when provided context type does not match required for the field
              ****************************************/
             template <int ID, typename C, typename T>
-            inline C&& emit_field_helper(C&& _c, const T& _what, std::false_type, std::false_type)
+            inline C emit_field_helper(C&& _c, const T& _what, std::false_type, std::false_type)
             {
                 auto newContext = resolveImplicit(std::forward<C>(_c), pdu_field<T, ID>());
                 newContext = pdu_field<T, ID>::field().emit<ID>(std::forward<decltype(newContext)>(newContext), _what);
-                return std::move(std::remove_reference<typename C>::type(newContext));
+                return std::remove_reference<typename C>::type(newContext);
             }
             /************************************//**
              * \brief SFINAE fallback or catch-all
@@ -440,7 +440,7 @@ namespace MMS
          * \brief Field emitter
          ****************************************/
         template <int ID, typename C, typename T>
-        inline C&& emit_field(C&& _c, const T& _what)
+        inline C emit_field(C&& _c, const T& _what)
         {
             return std::move(Details::emit_field_helper<ID>(
                 std::forward<C>(_c), 
@@ -507,13 +507,13 @@ namespace MMS
             struct recursive_field_emitter
             {
                 template <typename C, typename T>
-                inline C&& emit(C&& _c, const T& _what)
+                inline C emit(C&& _c, const T& _what)
                 {
                     if (!std::is_void<pdu_field<T, ID>::field>())
                     {
-                        _c = emit_field<ID>(std::forward<C>(_c), _what);
+                        _c = emit_field<ID>(std::move(_c), _what);
                     }
-                    return std::move(recursive_field_emitter<ID-1>().emit(std::forward<C>(_c), _what));
+                    return recursive_field_emitter<ID-1>().emit(std::move(_c), _what);
                 }
             };
 
@@ -521,9 +521,9 @@ namespace MMS
             struct recursive_field_emitter<0>
             {
                 template <typename C, typename T>
-                inline C&& emit(C&& _c, const T& _what)
+                inline C emit(C&& _c, const T& _what)
                 {
-                    return std::move(emit_field<0>(std::forward<C>(_c), _what));
+                    return emit_field<0>(std::move(_c), _what);
                 }
             };
 
@@ -532,15 +532,15 @@ namespace MMS
             struct chosen_field_emitter
             {
                 template <typename C, typename T>
-                inline C&& emit(C&& _c, const T& _what, unsigned char _choice)
+                inline C emit(C&& _c, const T& _what, unsigned char _choice)
                 {
                     if (!std::is_void<pdu_field<T, ID>::field>() && _choice == ID)
                     {
-                        return std::move(emit_field<ID>(std::forward<C>(_c), _what));
+                        return emit_field<ID>(std::forward<C>(_c), _what);
                     }
                     else 
                     {
-                        return std::move(chosen_field_emitter<ID-1>().emit(std::forward<C>(_c), _what, _choice));
+                        return chosen_field_emitter<ID-1>().emit(std::forward<C>(_c), _what, _choice);
                     }
                 }
             };
@@ -549,28 +549,28 @@ namespace MMS
             struct chosen_field_emitter<0>
             {
                 template <typename C, typename T>
-                inline C&& emit(C&& _c, const T& _what, unsigned char _choice)
+                inline C emit(C&& _c, const T& _what, unsigned char _choice)
                 {
                     if (_choice == 0)
                     {
-                        return std::move(emit_field<0>(std::forward<C>(_c), _what));
+                        return emit_field<0>(std::forward<C>(_c), _what);
                     }
                     else
                     {
-                        return std::move(_c);
+                        return _c;
                     }
                 }
             };
 
 
             template <typename C, typename T>
-            inline C&& emit(C&& _c, const T& _what)
+            inline C emit(C&& _c, const T& _what)
             {
-                return recursive_field_emitter<M>().emit(std::forward<C>(_c), _what);
+                return recursive_field_emitter<M>().emit(std::move(_c), _what);
             }
 
             template <typename C, typename T>
-            inline C&& emit_chosen(C&& _c, const T& _what, unsigned char _choice)
+            inline C emit_chosen(C&& _c, const T& _what, unsigned char _choice)
             {
                 return chosen_field_emitter<M>().emit(std::forward<C>(_c), _what, _choice);
             }
@@ -579,17 +579,17 @@ namespace MMS
          * \brief Protocol structure emitter
          ****************************************/
         template <typename C, typename T>
-        inline C&& emit_fields(C&& _c, const T& _what)
+        inline C emit_fields(C&& _c, const T& _what)
         {
-            return std::move(emit_recursively<MAX_STRUCTURE_FIELDS>().emit(std::forward<C>(_c), _what));
+            return std::forward<C>(emit_recursively<MAX_STRUCTURE_FIELDS>().emit(std::move(_c), _what));
         }
         /************************************//**
          * \brief Emits single chosen field for CHOICE elements
          ****************************************/
         template <typename C, typename T>
-        inline C&& emit_chosen_field(C&& _c, const T& _what, unsigned char _choice)
+        inline C emit_chosen_field(C&& _c, const T& _what, unsigned char _choice)
         {
-            return std::move(emit_recursively<MAX_STRUCTURE_FIELDS>().emit_chosen(std::forward<C>(_c), _what, _choice));
+            return emit_recursively<MAX_STRUCTURE_FIELDS>().emit_chosen(std::forward<C>(_c), _what, _choice);
         }
         /************************************//**
          * \brief Field extractor
@@ -726,20 +726,20 @@ namespace MMS
              ****************************************/
             ///@{
             template <typename C, typename T>
-            inline C&& emitPduElement(C&& _c, const T& _what, decltype(T::choice)*)
+            inline C emitPduElement(C&& _c, const T& _what, decltype(T::choice)*)
             {
                 static_assert(std::remove_reference<C>::type::context_traits::tImplicit::value != true, "CHOICE elements must be emitted using explicit context only");
                 // This will emit the value of the chosen field and length, and even a tag!
-                return std::move(::MMS::serialization::emit_chosen_field(std::forward<C>(_c), _what, _what.choice)); 
+                return ::MMS::serialization::emit_chosen_field(std::forward<C>(_c), _what, _what.choice); 
 
             }
 
             template <typename C, typename T>
-            inline C&& emitPduElement(C&& _c, const T& _what, ...)
+            inline C emitPduElement(C&& _c, const T& _what, ...)
             {
                 auto oldSize = ::MMS::getContextSize(_c);
                 _c = ::MMS::serialization::emit_fields(std::forward<C>(_c), _what);
-                return std::move(::MMS::Emitters::emitTag(::MMS::Emitters::emitLength(std::forward<C>(_c), oldSize - ::MMS::getContextSize(_c)), _what));
+                return ::MMS::Emitters::emitTag(::MMS::Emitters::emitLength(std::forward<C>(_c), oldSize - ::MMS::getContextSize(_c)), _what);
             }
             ///@}
 
@@ -812,10 +812,10 @@ namespace MMS
          ****************************************/
         template <typename Context, typename T>
         inline 
-        typename std::enable_if<!std::is_void<typename MMS::serialization::pdu_field<T, 0>::field>::value, typename std::remove_reference<Context>::type>::type&& 
+        typename std::enable_if<!std::is_void<typename MMS::serialization::pdu_field<T, 0>::field>::value, typename std::remove_reference<Context>::type>::type
         emit(Context&& _ctx, const T& _Value)
         {
-            return std::move(::MMS::PDU::Details::emitPduElement(std::forward<Context>(_ctx), _Value, 0));
+            return ::MMS::PDU::Details::emitPduElement(std::move(_ctx), _Value, 0);
         };
     }
 

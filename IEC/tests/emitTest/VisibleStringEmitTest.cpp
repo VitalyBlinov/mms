@@ -135,3 +135,18 @@ TEST_F(VisibleStringEmitTest, EmitFromString)
     EXPECT_EQ(value.length(), testArray[testArray.size() - value.length()-1]);
     ASSERT_EQ(MMS::Tags::VISIBLE_STRING, testArray[testArray.size() - value.length()-2]);
 }
+
+
+TEST_F(VisibleStringEmitTest, EmitStdString)
+{
+    std::string CUT("testing...");
+
+    auto ctx = createMMSExplicitContext(testArray);
+    auto oldSize = getContextSize(ctx);
+    auto newSize = getContextSize(emit(ctx, CUT));
+    EXPECT_EQ(12, oldSize - newSize);
+    EXPECT_NE(0, testArray[127]);
+    EXPECT_EQ(CUT, std::string(testArray.end() - CUT.length(), testArray.end()));
+    EXPECT_EQ(CUT.length(), testArray[testArray.size() - CUT.length()-1]);
+    ASSERT_EQ(MMS::Tags::VISIBLE_STRING, testArray[testArray.size() - CUT.length()-2]);
+}

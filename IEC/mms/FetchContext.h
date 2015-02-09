@@ -43,12 +43,20 @@ namespace MMS
                 /************************************//**
                  * \brief Copy constructor
                  ****************************************/
-                FetchContextBase(
+                inline FetchContextBase(
                     const FetchContextBase& _rhs
-                    );
+                    ):
+                    m_begin(_rhs.m_begin),
+                    m_end(_rhs.m_end)
+                {
+
+                }
                 /// \brief Fetch single octet
                 /// \details Does not perform bounds checks!
-                unsigned char fetchOctetUnsafe();
+                inline unsigned char fetchOctetUnsafe()
+                {
+                    return *m_begin++;
+                }
                 /// \brief Fetch a number of octets
                 /// \details Checks if given number of octets can be extracted. If so, returns
                 /// a pointer to the beginning of such array, otherwise returns a null pointer.
@@ -63,7 +71,10 @@ namespace MMS
                  *
                  * \returns Remaining context buffer size in bytes
                  ****************************************/
-                std::size_t GetContextSize() const;
+                inline std::size_t GetContextSize() const
+                {
+                    return m_end - m_begin;
+                }
                 /************************************//**
                  * \brief Indicates if tag should be emitted in this context
                  *
@@ -126,13 +137,24 @@ namespace MMS
                  *
                  ****************************************/
                 template <class Tr>
-                FetchContext(                
+                inline FetchContext(                
                     const FetchContext<Tr>& _rhs          ///< Original instance
                     ):
                     FetchContextBase(_rhs)
                 {
 
                 }
+                /************************************//**
+                 * \brief Constructor
+                 *
+                 * \details Creates empty context
+                 *
+                 ****************************************/
+                FetchContext():
+                    FetchContextBase(nullptr, 0)
+                    {
+
+                    }
             };
 
         }

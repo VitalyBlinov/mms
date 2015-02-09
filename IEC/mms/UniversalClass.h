@@ -57,7 +57,7 @@ namespace ASN1
 
 #define ASN_TAG_TYPE_DEF(type, tag) \
         template <> struct TagDef<type> {enum {TAG = tag};};
-#define T_ASN_TAG_TYPE_DEF(type, tag) \
+#define ASN_T_TAG_TYPE_DEF(type, tag) \
         struct TagDef<type> {enum {TAG = tag};};
 
         ASN_TAG_TYPE_DEF(char, EN_UNIVERSAL_CLASS::INTEGER);

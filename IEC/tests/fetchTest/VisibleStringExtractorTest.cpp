@@ -42,7 +42,7 @@ TEST_F(VisibleStringExtractorTest, ShortString)
     std::string value("My name is not Earl.");
     auto ctx = createFetchContext(testArray);
     testArray[0] = MMS::Tags::VISIBLE_STRING;
-    testArray[1] = value.length();
+    testArray[1] = value.length() & 0xFF;
     std::copy(value.begin(), value.end(), testArray.begin() + 2);
     
     VisibleString<std::array<char, 128>> CUT;
@@ -58,7 +58,7 @@ TEST_F(VisibleStringExtractorTest, StringIsTooLongButWeStillStand)
     std::string value("My name is not Earl.");
     auto ctx = createFetchContext(testArray);
     testArray[0] = MMS::Tags::VISIBLE_STRING;
-    testArray[1] = value.length();
+    testArray[1] = value.length() & 0xFF;
     std::copy(value.begin(), value.end(), testArray.begin() + 2);
     
     VisibleString<std::array<char, 8>> CUT;
@@ -74,7 +74,7 @@ TEST_F(VisibleStringExtractorTest, ExtractToString)
     std::string value("My name is not Earl.");
     auto ctx = createFetchContext(testArray);
     testArray[0] = MMS::Tags::VISIBLE_STRING;
-    testArray[1] = value.length();
+    testArray[1] = value.length() & 0xFF;
     std::copy(value.begin(), value.end(), testArray.begin() + 2);
     
     VisibleString<std::string> CUT;

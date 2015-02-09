@@ -42,5 +42,8 @@
     <ClCompile Include="SequenceFetchTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GetNameListResponseTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

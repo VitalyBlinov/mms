@@ -58,12 +58,15 @@ TEST_F(SequenceEmitTest, TestEmitAndFetchAFewStrings)
 
     auto result = emitSequence(ctx, testVector.begin(), testVector.end());
     EXPECT_EQ(testVector.end(), result.second);
-    EXPECT_EQ(43, oldSize - getContextSize(result.first));
+    EXPECT_EQ(45, oldSize - getContextSize(result.first));
 
     auto newSize = getContextSize(result.first);
 
     auto fetchContext = ExplicitFetchContextASN(createNoTagFetchContext(testArray.begin()+newSize, testArray.end()));
-
+    EXPECT_TRUE(checkTag(fetchContext, testVector));
+    unsigned int length = 0;
+    EXPECT_TRUE(fetchLength(fetchContext, length));
+    EXPECT_EQ(43, length);
     VisibleString<std::string> Fetched;
     EXPECT_TRUE(fetch(fetchContext, Fetched));
     EXPECT_EQ(std::string("First string"), static_cast<std::string>(Fetched));

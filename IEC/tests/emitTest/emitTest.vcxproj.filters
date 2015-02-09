@@ -18,12 +18,6 @@
     <ClCompile Include="EmitOctetTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EmitLengthTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BoolEmitterTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EmitTagTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,9 +25,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UnsignedEmitterTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BitStringEmitterTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FloatEmitterTest.cpp">
@@ -45,22 +36,34 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ContextTraitsTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TagDefTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptimizerBug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ASN1TagTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VarSizeBitStringEmitTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EvaluatorTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="octetStringEmitterTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ASN1TagTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BitStringEmitterTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoolEmitterTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextTraitsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EmitLengthTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

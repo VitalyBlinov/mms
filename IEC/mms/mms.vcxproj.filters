@@ -28,6 +28,9 @@
     <Filter Include="PDUs\Elements">
       <UniqueIdentifier>{94f2b2c7-d3e2-46dd-a044-37e2ba590836}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PDUs\ConfirmedServices">
+      <UniqueIdentifier>{2348bcda-1cad-41b8-adbb-76999a968a2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -177,9 +180,6 @@
     <ClInclude Include="Status.h">
       <Filter>PDUs\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="sequence.h">
-      <Filter>PDUs\Elements</Filter>
-    </ClInclude>
     <ClInclude Include="evaluator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -191,6 +191,54 @@
     </ClInclude>
     <ClInclude Include="skipTLV.h">
       <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="GetNameListReq.h">
+      <Filter>PDUs\ConfirmedServices</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectClass.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectScope.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="GetNameListResponse.h">
+      <Filter>PDUs\ConfirmedServices</Filter>
+    </ClInclude>
+    <ClInclude Include="sequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceOfExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="defaultFieldValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdentifyRequest.h">
+      <Filter>PDUs\ConfirmedServices</Filter>
+    </ClInclude>
+    <ClInclude Include="IdentifyResponse.h">
+      <Filter>PDUs\ConfirmedServices</Filter>
+    </ClInclude>
+    <ClInclude Include="Address.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="OctetStringExt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OctetString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OctetStringEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="OctetStringExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableAccessSpecification.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeSpecification.h">
+      <Filter>PDUs\Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

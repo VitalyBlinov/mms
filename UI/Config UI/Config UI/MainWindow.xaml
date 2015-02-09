@@ -1,0 +1,27 @@
+﻿<Window x:Class="Config_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:self="clr-namespace:Config_UI"
+        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing" Name="mainWindow">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static self:CustomCommands.Exit}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>    
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,1,456,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <MenuItem Header="File" Margin="0">
+                <MenuItem Command="{x:Static self:CustomCommands.Exit}" HorizontalAlignment="Left"/>
+            </MenuItem>
+            <MenuItem Header="Help" Margin="0">
+                <MenuItem Header="About" HorizontalAlignment="Left"/>
+            </MenuItem>
+        </Menu>
+        <DataGrid Height="304" VerticalAlignment="Top" AutoGenerateColumns="False" Name="gridDevices" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding IPAddress}" ClipboardContentBinding="{x:Null}" Header="IP Address"/>
+                <DataGridTextColumn Binding="{Binding Status}" ClipboardContentBinding="{x:Null}" Header="Status"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</Window>
