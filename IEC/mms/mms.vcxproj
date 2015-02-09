@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6EE558D5-8018-4000-87EE-151CB6F73847}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>mms</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\solution.props" />
+    <Import Project="..\boost.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\solution.props" />
+    <Import Project="..\boost.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AbstractStructure.h" />
+    <ClInclude Include="ASN1Tag.h" />
+    <ClInclude Include="BitStringEmitter.h" />
+    <ClInclude Include="BitStringExtractor.h" />
+    <ClInclude Include="BoolEmitter.h" />
+    <ClInclude Include="BoolExtractor.h" />
+    <ClInclude Include="CancelPDU.h" />
+    <ClInclude Include="ConcludePDU.h" />
+    <ClInclude Include="ContextMisc.h" />
+    <ClInclude Include="ContextTraits.h" />
+    <ClInclude Include="EmitContext.h" />
+    <ClInclude Include="EmitOctet.h" />
+    <ClInclude Include="ErrorClass.h" />
+    <ClInclude Include="evaluator.h" />
+    <ClInclude Include="ExtractedSequenceOf.h" />
+    <ClInclude Include="InitiateErrorPDU.h" />
+    <ClInclude Include="NULLValue.h" />
+    <ClInclude Include="FetchContext.h" />
+    <ClInclude Include="FetchOctet.h" />
+    <ClInclude Include="FixedSizeBitString.h" />
+    <ClInclude Include="FloatEmitter.h" />
+    <ClInclude Include="FloatExtractor.h" />
+    <ClInclude Include="InitiateRequestDetail.h" />
+    <ClInclude Include="InitiateRequestPDU.h" />
+    <ClInclude Include="InitiateResponsePDU.h" />
+    <ClInclude Include="IntegerEmitter.h" />
+    <ClInclude Include="IntegerExtractor.h" />
+    <ClInclude Include="LengthEmitter.h" />
+    <ClInclude Include="LengthExtractor.h" />
+    <ClInclude Include="MMSTags.h" />
+    <ClInclude Include="ObjectName.h" />
+    <ClInclude Include="ParametersSupportOpts.h" />
+    <ClInclude Include="PDUCommons.h" />
+    <ClInclude Include="RejectPDU.h" />
+    <ClInclude Include="sequence.h" />
+    <ClInclude Include="SequenceOfEmitter.h" />
+    <ClInclude Include="serialization.h" />
+    <ClInclude Include="ServiceError.h" />
+    <ClInclude Include="ServiceSupportOpts.h" />
+    <ClInclude Include="skipTLV.h" />
+    <ClInclude Include="Status.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StructureEmitter.h" />
+    <ClInclude Include="TagEmitter.h" />
+    <ClInclude Include="TagExtractor.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="UniversalClass.h" />
+    <ClInclude Include="UnsignedEmitter.h" />
+    <ClInclude Include="UnsignedExtractor.h" />
+    <ClInclude Include="VarSizeBitString.h" />
+    <ClInclude Include="VisibleString.h" />
+    <ClInclude Include="VisibleStringEmitter.h" />
+    <ClInclude Include="VisibleStringExtractor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ASN1Tag.cpp" />
+    <ClCompile Include="EmitContext.cpp" />
+    <ClCompile Include="FetchContext.cpp" />
+    <ClCompile Include="InitiateRequestDetail.cpp" />
+    <ClCompile Include="InitiateRequestPDU.cpp" />
+    <ClCompile Include="InitiateResponsePDU.cpp" />
+    <ClCompile Include="ParametersSupportOpts.cpp" />
+    <ClCompile Include="RejectPDU.cpp" />
+    <ClCompile Include="ServiceSupportOpts.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="VarSizeBitString.cpp" />
+    <ClCompile Include="VisibleString.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

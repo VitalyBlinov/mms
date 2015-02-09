@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Emitters">
+      <UniqueIdentifier>{9ae38283-b5ee-4b66-a8f5-acf641d8bb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{2146c89f-c50e-41c5-b327-d6bdd97013b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PDUs">
+      <UniqueIdentifier>{e9dc7797-3059-4dd3-87cf-bd9f383acce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extractors">
+      <UniqueIdentifier>{99b13b6d-6c37-4e9a-89f7-ac5babe09f7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PDUs\Elements">
+      <UniqueIdentifier>{94f2b2c7-d3e2-46dd-a044-37e2ba590836}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MMSTags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EmitContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoolEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="LengthEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="TagEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="UnsignedEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractStructure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BitStringEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="InitiateRequestPDU.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="serialization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InitiateRequestDetail.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSizeBitString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FetchContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextMisc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TagExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="FetchOctet.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="LengthExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="BoolExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="EmitOctet.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="UnsignedExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="BitStringExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="InitiateResponsePDU.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleStringEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleStringExtractor.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UniversalClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PDUCommons.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcludePDU.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="RejectPDU.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="NULLValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CancelPDU.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="InitiateErrorPDU.h">
+      <Filter>PDUs</Filter>
+    </ClInclude>
+    <ClInclude Include="ASN1Tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VarSizeBitString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectName.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorClass.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceError.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceSupportOpts.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ParametersSupportOpts.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="sequence.h">
+      <Filter>PDUs\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="evaluator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceOfEmitter.h">
+      <Filter>Emitters</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtractedSequenceOf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="skipTLV.h">
+      <Filter>Extractors</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EmitContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitiateRequestPDU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitiateRequestDetail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParametersSupportOpts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceSupportOpts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FetchContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitiateResponsePDU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RejectPDU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ASN1Tag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VarSizeBitString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisibleString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
