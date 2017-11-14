@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mms", "mms\mms.vcxproj", "{6EE558D5-8018-4000-87EE-151CB6F73847}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1FBBE9BC-DD90-492A-A134-65676D5F17A0}"
@@ -22,7 +24,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DA7F1E6-35B0-4D47-BEC6-CD802DDD593C}"
 	ProjectSection(SolutionItems) = preProject
 		boost.props = boost.props
-		DOC\dubuisson-asn1-book.PDF = DOC\dubuisson-asn1-book.PDF
 		gtest.props = gtest.props
 		solution.props = solution.props
 	EndProjectSection
